@@ -17,7 +17,7 @@ fs.writeFileSync(`${outDir}/config.json`, JSON.stringify({
   version: 3,
   routes: [
     { handle: "filesystem" },
-    { src: "/(.*)", dest: "/" }
+    { src: "/(.*)", dest: "/index" }
   ]
 }, null, 2));
 
