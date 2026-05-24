@@ -4,8 +4,6 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
@@ -68,49 +66,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lumière & Grace — Handcrafted Luxury Candles" },
-      { name: "description", content: "Hand-poured, personalized luxury candles for anniversaries, weddings, gifting, and elegant home décor. Crafted with warmth & memories." },
-      { name: "author", content: "Lumière & Grace" },
-      { property: "og:title", content: "Lumière & Grace — Handcrafted Luxury Candles" },
-      { property: "og:description", content: "Hand-poured, personalized luxury candles for anniversaries, weddings, gifting, and elegant home décor. Crafted with warmth & memories." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lumière & Grace — Handcrafted Luxury Candles" },
-      { name: "twitter:description", content: "Hand-poured, personalized luxury candles for anniversaries, weddings, gifting, and elegant home décor. Crafted with warmth & memories." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/055f59c4-4ff4-4b54-acdc-efc2932ae9ac/id-preview-8dad975c--651b4bc1-d11e-44a9-b00c-cd3e98475ad1.lovable.app-1779617980279.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/055f59c4-4ff4-4b54-acdc-efc2932ae9ac/id-preview-8dad975c--651b4bc1-d11e-44a9-b00c-cd3e98475ad1.lovable.app-1779617980279.png" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
