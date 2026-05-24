@@ -1,11 +1,15 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteTsConfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 
-// Removing custom server entry to allow Vercel to use its default Node/Edge handler
 export default defineConfig({
-  cloudflare: false,
-  tanstackStart: {
-    server: { 
-      preset: "vercel"
-    },
+  plugins: [
+    tanstackStart(),
+    tailwindcss(),
+    viteTsConfigPaths({ projects: ["./tsconfig.json"] }),
+  ],
+  resolve: {
+    alias: { "@": "/src" },
   },
 });
